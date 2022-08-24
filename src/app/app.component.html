@@ -1,0 +1,59 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main" class="myDrawardMenu">
+    <ion-header>
+      <ion-toolbar color="warning">
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item routerLink="/tab1">
+            <ion-icon name="home-outline" slot="start" color="warning">
+            </ion-icon>
+            <ion-label>Catalogue</ion-label>                      
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/commande">
+            <ion-icon name="fast-food-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>Mes Commandes</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/panier">
+            <ion-icon name="basket-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>Panier</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="/securite">
+            <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>Connexion</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab1">
+      <ion-icon name="home-outline" color="warning"></ion-icon>
+      <ion-label color="warning">Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="commande">
+      <ion-icon name="fast-food-outline" color="warning"></ion-icon>
+      <ion-label color="warning">Mes Commandes</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="panier">
+      <ion-icon name="basket-outline" color="warning"></ion-icon>
+      <ion-label color="warning">Panier</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+
+</ion-app>

@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button defaultHref="/tab1" color="warning">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        Inscription
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="header">
+    <h1>Login</h1>
+    <img src="../../assets/images/logo.jpg">
+  </div>
+  <form  id="form" #signIn="ngForm" (ngSubmit)="findLogin()">
+    <ion-item>
+      <ion-input  type="email" id="username"
+        name="username" required placeholder="Email"
+        [(ngModel)]="user.username"
+        #username="ngModel"
+      >
+      </ion-input>
+    </ion-item>
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger"> 
+      <div *ngIf="username.errors?.['required']" style="color:red;">
+        Username is required.
+      </div>
+    </div>
+    <ion-item>
+      <ion-input type="password" placeholder="Password"
+        name="logpassword" required
+        id="logpassword"
+        [(ngModel)]="user.password"
+        #password="ngModel"
+      >
+      </ion-input>      
+    </ion-item>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger"> 
+      <div *ngIf="password.errors?.['required']" style="color:red;" class="{{showError}}">
+        Password is required.
+      </div>
+    </div>
+    <ion-button expand="block" shape="round" color="warning" type="submit" [disabled]="signIn.invalid">
+      Login
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab1" color="warning"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Tab 2
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div *ngIf="produit!=undefined">
+    <ion-img :src="data:image/png;base64,{{produit.produit.image}}"></ion-img>
+    <ion-title>Nom :{{produit.produit.nom}}</ion-title>
+    <ion-title>Prix:{{produit.produit.prix}} Frs</ion-title>
+    <ion-row>
+      <ion-button size="medium" color="warning">Ajouter Panier</ion-button>
+    </ion-row>
+  </div>
+</ion-content>
