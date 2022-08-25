@@ -8,16 +8,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class RoleGuard implements CanActivate {
   constructor(private authServ: AuthService, private route: Router){
-
+    
   }
   canActivate(){
     if(this.authServ.haveAccess()){
       return true;
     }else
     {
-      this.route.navigate([''])
+      this.route.navigate(['/securite'])
       return false;
     }
-  }
-  
+  }  
 }

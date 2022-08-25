@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>commande</ion-title>
+    <ion-title>Mes Commandes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list *ngFor="let com of mesCommandes">
+    <ion-col size="12" *ngIf="com.etat=='en cours'">
+      <ion-card>
+        <ion-item>
+          <ion-label>{{com.dateAt | date:'dd-MM-yyyy'}}</ion-label>
+          <ion-button expand="block" fill="clear" shape="round" routerLink="/detail-commande">
+            <ion-icon name="arrow-forward-circle-outline" size="medium" color="warning"></ion-icon>      
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{com.montant}}Frs</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{com.etat}}</ion-label>        
+          <ion-button size="small" color="success" (click)="annullerCommande(com.id)">
+            Annuller
+          </ion-button>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-list>
 </ion-content>

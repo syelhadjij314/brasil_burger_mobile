@@ -22,7 +22,7 @@ export class DetailPage implements OnInit{
     const id= this.route.snapshot.params['id']
       this.catalogueServ.produitId$(id).subscribe(data =>{
         this.produit=data
-        console.log(data);
+        // console.log(data);
         
       });
     

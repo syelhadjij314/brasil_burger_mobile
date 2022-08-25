@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from '../shared/services/token-interceptor.service';
 import { AuthService } from '../shared/services/auth.service';
 import { CommandeService } from '../shared/services/commande.service';
+import { StorageService } from '../shared/services/storage.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { CommandeService } from '../shared/services/commande.service';
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true},
     AuthService,
-    CommandeService
+    CommandeService,
+    StorageService
   ]
 
 })

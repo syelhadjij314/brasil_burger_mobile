@@ -23,25 +23,13 @@ export class UserService {
       map(
         data => data['hydra:member']
       ));
-    }
-    addUser(p: User) {
+  }
+  addUser(p: User) {
     return this.http.post(this.urlUser, p, { headers: this.headers });
-    }
-    getCommandesClient(client_id:any){
-      return this.http.get(this.urlUser+"/"+client_id)
-    }
-    getUserByEmail(emailUser:string){
-      this.http.get<any>(this.urlUser).subscribe(u=>{
-        u["hydra:member"].forEach((user:User)=>{          
-            if(user.username==emailUser){
-              this.usercom=user
-              this.usercom.id=user.id;
-            }
-        }); 
-      })
-      // console.log(this.usercom.id);
-        return this.usercom.id;
-      
-    }
+  }
+  getCommandesClient(client_id:any){
+    return this.http.get(this.urlUser+"/"+client_id)
+  }
+  
   
 }

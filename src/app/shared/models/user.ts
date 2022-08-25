@@ -1,3 +1,5 @@
+import { Commande } from "./commande";
+
 export interface User{
     id?: number;
     username?: string;
@@ -8,5 +10,6 @@ export interface User{
     telephone?:string;
     nom?:string;
     matriculeMoto?:string;
-    ["hydra:member"]?:[{ }]
+    ["hydra:member"]?:[{ }];
+    commandes?:Commande[]
 }

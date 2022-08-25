@@ -11,7 +11,11 @@ import { CatalogueService } from '../shared/services/catalogue.service';
 })
 export class CataloguePage implements OnInit{
   produit! : any;
+  produitTab!:Produit[];
   produits! : Catalogue|null;
+  maxPrice!:number;
+  minPrice!:number;
+
   // @Input('produits') prod! : Produit;
   constructor(private catalogueServ:CatalogueService,
     private route:Router,private routes:ActivatedRoute) {}
@@ -20,9 +24,12 @@ export class CataloguePage implements OnInit{
       (data) => {
         this.produits = data;
         this.produit = this.produits.produit
-        // console.log(data);
+        this.produitTab=this.produit;
+        this.maxPrice=this.produitTab.reduce((op, item)=> op=op >item.prix? op:item.prix,0);
+        this.minPrice=this.produitTab.reduce((op, item)=> op=op <=item.prix? op:item.prix,0)   
       }
     )    
+
   }
   showProduits(option:string){
     // alert(option)
@@ -35,8 +42,19 @@ export class CataloguePage implements OnInit{
     speed: 400,
     loop: true,
     autoplay: {
-          delay: 4000
+        delay: 4000
     }
+  }
+  pinFormatter(value: number){
+    return `${value}FCFA`;
+  }
+  onIonKnobMoveEnd(e:any){
+    this.produit=this.produitTab.filter((product =>{
+      return(
+        product.prix >=e.detail.value.lower &&
+        product.prix <=e.detail.value.upper
+        )
+    }))
   }
   
 }

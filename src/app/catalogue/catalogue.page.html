@@ -21,31 +21,32 @@
   <!--<app-explore-container name="Tab 1 page"></app-explore-container>-->
   <ion-slides pager="true" [options]="slideOpts">
     <ion-slide>
-      <img src="https://burgerkingfrance.twic.pics/img/animations/cc10bfd8-6fd7-42f4-be66-19fc6c5f33a4_?twic=v1" alt="hzhjjh" srcset="">
-      
+      <img src="https://burgerkingfrance.twic.pics/img/animations/cc10bfd8-6fd7-42f4-be66-19fc6c5f33a4_?twic=v1" alt="hzhjjh" srcset="">      
     </ion-slide>
     <ion-slide>
-      <img src="https://burgerkingfrance.twic.pics/img/animations/cf6cc5a9-a1c8-41f1-aff0-9a1696ab5410_?twic=v1" alt="hzhjjh" srcset="">
-      
+      <img src="https://burgerkingfrance.twic.pics/img/animations/cf6cc5a9-a1c8-41f1-aff0-9a1696ab5410_?twic=v1" alt="hzhjjh" srcset="">      
     </ion-slide>
     <ion-slide>
       <img src="https://burgerkingfrance.twic.pics/img/animations/cc10bfd8-6fd7-42f4-be66-19fc6c5f33a4_?twic=v1" alt="hzhjjh" srcset="">
     </ion-slide>
   </ion-slides>
   <div class="mb-3 col-2 btn-select">
-    <!--<select class="form-control"  name="choix"  id="choix" #option (change)="showProduits(option.value)">
-        <option value="burgers">Burger</option>
-        <option  value="menus">Menu</option>
-    </select>-->
     <ion-select placeholder="Menu/Burger" name="choix"  id="choix" #option (ionChange)="showProduits(option.value)">
       <ion-select-option value="burgers">Burger</ion-select-option>
       <ion-select-option value="menus">Menu</ion-select-option>
     </ion-select>
   </div>
-  <div class="mb-3 col-2 btn-select">
+  
     <!--<ion-button (click)="presentAlert()">Click Me</ion-button>-->
-    <!--<ion-range></ion-range>-->
-  </div>
+  <ion-range [snaps]="true" [min]="1500"
+    color="warning"
+    [max]="maxPrice" [pin]="true" 
+    [pinFormatter]="pinFormatter"
+    [dualKnobs]="true" 
+    [value]="{ lower: 20, upper: 80 }" 
+    (ionKnobMoveEnd)="onIonKnobMoveEnd($event)">
+  </ion-range>
+  
   <ion-card div class="card" *ngFor="let prod of produit">
     <ion-img :src="data:image/png;base64,{{prod.image}}"></ion-img>
     <div class="card-content">

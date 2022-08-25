@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { CommandeService } from './commande.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,13 @@ export class AuthService {
   headers: HttpHeaders;
   idUser!:number;
 
-  constructor(private http : HttpClient, private route:Router) {
-    const token = localStorage.getItem('token');
+  constructor(
+    private http : HttpClient,
+    private route:Router,
+    private storageServ : StorageService,
+    private commandeServ : CommandeService
+    ) {
+    const token = this.storageServ.get('token');
     this.headers = new HttpHeaders().set('Authorization', 'Bearer' + token);
   }
 
@@ -22,20 +29,15 @@ export class AuthService {
     return this.http.post(this.urlLogin, user)
   }
   isLoogedIn(){    
-    return localStorage.getItem('token') != null
+    return this.storageServ.get('token') != null
   }
-  isLoogedOut(){
-    
-    localStorage.removeItem('token')
-    this.route.navigate(['/']);
-  }
-
-  getToken(){
-    return localStorage.getItem('token') || '';
+  isLoogedOut(){    
+    this.storageServ.remove('token')
+    this.route.navigate(['/securite']);
   }
 
   haveAccess(){
-    var loginToken = localStorage.getItem('token') || '';
+    var loginToken:any = this.storageServ.get('token') || '';
     var extractedToken=loginToken.split('.')[1];
     var atobData= atob(extractedToken);
     var finalData= JSON.parse(atobData);
@@ -46,12 +48,13 @@ export class AuthService {
     alert("Access Denied")
     return false;
   }
+
   getIdUser(user:User):number{
     this.http.post(this.urlLogin, user).subscribe(
       (userConnect:any)=>{
         if (userConnect['token']) {        
           // console.log(userConnect['id'])
-          localStorage.setItem('token',userConnect['token']);          
+          this.storageServ.set('token',userConnect['token']);          
         }
         this.idUser=userConnect['id']
       }

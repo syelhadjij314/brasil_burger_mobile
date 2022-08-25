@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +27,12 @@ const routes: Routes = [
   },
   {
     path: 'commande',
-    loadChildren: () => import('./commande/commande.module').then( m => m.CommandePageModule)
+    loadChildren: () => import('./commande/commande.module').then( m => m.CommandePageModule),
+    canActivate : [AuthGuard]
+  },
+  {
+    path: 'detail-commande',
+    loadChildren: () => import('./detail-commande/detail-commande.module').then( m => m.DetailCommandePageModule)
   }
 ];
 @NgModule({
