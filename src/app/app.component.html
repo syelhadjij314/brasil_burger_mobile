@@ -27,9 +27,21 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item routerLink="/securite">
+          <ion-item  routerLink="/securite">
             <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
             <ion-label>Connexion</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item (click)="authServ.isLoogedOut()">
+            <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+            <ion-label routerLink="/tab1">Deconnexion</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>Livraison</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>

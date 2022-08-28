@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
+import { CommandeService } from './commande.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +14,27 @@ export class UserService {
 
   usercom:User={}
   headers: HttpHeaders;
+  userToken:string;
 
-  constructor(private http: HttpClient) {
-    const token = localStorage.getItem('token');
-    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  constructor(private http: HttpClient,
+    private storageServ : StorageService,
+    private commandeServ : CommandeService,
+
+      ) {
+        this.commandeServ.getToken()
+        // this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
   }
 
   getAll() {
-    return this.http.get<any>(this.urlUser, { headers: this.headers }).pipe(
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.userToken);
+    return this.http.get<any>(this.urlUser, { headers: headers }).pipe(
       map(
         data => data['hydra:member']
       ));
   }
   addUser(p: User) {
-    return this.http.post(this.urlUser, p, { headers: this.headers });
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.userToken);
+    return this.http.post(this.urlUser, p, { headers: headers });
   }
   getCommandesClient(client_id:any){
     return this.http.get(this.urlUser+"/"+client_id)

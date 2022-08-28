@@ -1,17 +1,29 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/securite" color="warning"></ion-back-button>
+    </ion-buttons>
     <ion-title>Mes Commandes</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-list *ngFor="let com of mesCommandes">
-    <ion-col size="12" *ngIf="com.etat=='en cours'">
+    <ion-item>
+      <ion-input type="date" [(ngModel)]="searchDate" color="warning"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Filtre Etat</ion-label>
+      <ion-select value="peperoni" multiple="false" placeholder="Select Pizza" [(ngModel)]="etatSearch" #etat (click)="EtatValue(etat.value)">
+        <ion-select-option value="en cours">en cours</ion-select-option>
+        <ion-select-option value="disponible">disponible</ion-select-option>
+        <ion-select-option value="annuler">annuler</ion-select-option>
+      </ion-select>
+    </ion-item>  
+  <ion-list *ngFor="let com of mesCommandes | filter:searchDate | filter:etatSearch">
       <ion-card>
         <ion-item>
           <ion-label>{{com.dateAt | date:'dd-MM-yyyy'}}</ion-label>
-          <ion-button expand="block" fill="clear" shape="round" routerLink="/detail-commande">
-            <ion-icon name="arrow-forward-circle-outline" size="medium" color="warning"></ion-icon>      
+          <ion-button expand="block" fill="clear" shape="round" routerLink="/detail-commande/{{com.id}}">
+            <ion-icon name="arrow-forward-circle-outline" size="large" color="warning"></ion-icon>      
           </ion-button>
         </ion-item>
         <ion-item>
@@ -24,6 +36,5 @@
           </ion-button>
         </ion-item>
       </ion-card>
-    </ion-col>
   </ion-list>
 </ion-content>

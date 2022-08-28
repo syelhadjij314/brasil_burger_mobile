@@ -8,9 +8,11 @@ import { CommandePageRoutingModule } from './commande-routing.module';
 
 import { CommandePage } from './commande.page';
 import { AuthGuard } from '../shared/guards/auth.guard';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from '../shared/services/auth.service';
 import { CommandeService } from '../shared/services/commande.service';
+import { TokenInterceptorService } from '../shared/services/token-interceptor.service';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -18,12 +20,13 @@ import { CommandeService } from '../shared/services/commande.service';
     FormsModule,
     IonicModule,
     CommandePageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
   declarations: [CommandePage],
   providers: [
-    CommandeService,
-    
+    {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true},
+    CommandeService,    
   ]
 })
 export class CommandePageModule {}

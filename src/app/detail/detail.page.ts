@@ -16,14 +16,15 @@ export class DetailPage implements OnInit{
 
   produit! : Detail;
 
-  constructor(private catalogueServ:CatalogueService,
-    private route:ActivatedRoute) {}
+  constructor(
+    private catalogueServ:CatalogueService,
+    private route:ActivatedRoute,
+    ) {}
   ngOnInit(): void {
     const id= this.route.snapshot.params['id']
       this.catalogueServ.produitId$(id).subscribe(data =>{
         this.produit=data
-        // console.log(data);
-        
+        // console.log(data);        
       });
     
   }

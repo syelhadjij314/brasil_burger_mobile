@@ -1,7 +1,7 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button defaultHref="/tab1" color="warning">
+      <ion-button routerLink="/tab1" color="warning">
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -50,4 +50,12 @@
       Login
     </ion-button>
   </form>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Ionic Loader Examples
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
 </ion-content>

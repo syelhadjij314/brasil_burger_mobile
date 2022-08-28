@@ -31,8 +31,12 @@ const routes: Routes = [
     canActivate : [AuthGuard]
   },
   {
-    path: 'detail-commande',
+    path: 'detail-commande/:id',
     loadChildren: () => import('./detail-commande/detail-commande.module').then( m => m.DetailCommandePageModule)
+  },
+  {
+    path: 'livraison',
+    loadChildren: () => import('./livraison/livraison.module').then( m => m.LivraisonPageModule)
   }
 ];
 @NgModule({

@@ -12,21 +12,30 @@ import { StorageService } from './storage.service';
 export class CommandeService {
 
   private urlCommande= "http://localhost:8000/api/commandes";
+  private urlCommandeUser= "http://localhost:8000/api/users";
+
   tabCommande : Array<any> =[]
-  headers:HttpHeaders;
+  // headers:HttpHeaders;
   dateTime:Date= new Date();
+  userToken:string;
   constructor(
     private http : HttpClient,
     private storageServ : StorageService,
     ){
-    const token = this.storageServ.get('token');
-    this.headers=new HttpHeaders().set('Authorization', 'Bearer ' + token); 
+    this.getToken();    
+  }
+  async getToken(){
+    await this.storageServ.get('token').then(tok=>{
+      this.userToken = tok
+    });
+      console.log(this.userToken)    
   }
 
   commandeId$ = (id:number) => {
-    return this.http.get<any>(`${this.urlCommande}/${id}`)
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.userToken);
+    return this.http.get<any>(`${this.urlCommande}/${id}`,{headers: headers});    
   }
-
+  
   getCommande(): Observable<any> {
     return this.http.get<any>(this.urlCommande).pipe(
       map(
@@ -34,14 +43,18 @@ export class CommandeService {
       )
     );
   }
+
   postCommande(body: any){
-    this.http.post<Commande>(this.urlCommande,body,{ headers: this.headers }).subscribe((response) =>
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.userToken);
+    this.http.post<Commande>(this.urlCommande,body,{ headers: headers }).subscribe((response) =>
       console.log(response)
     )
   }
+
   updateCommande(id:number,body:object){
     this.http.put(this.urlCommande+"/"+id,body).subscribe()
   }
+  
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);

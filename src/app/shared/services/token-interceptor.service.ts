@@ -9,14 +9,14 @@ export class TokenInterceptorService implements HttpInterceptor{
 
   constructor(private inject: Injector) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (request.url !== "http://localhost:8000/api/login_check") {
+    /* if (request.url !== "http://localhost:8000/api/login_check") {
       const token = localStorage.getItem('token');
       request = request.clone({
         setHeaders: {
           "Authorization": 'Bearer ' + token
         }
       });
-    }
+    } */
     return next.handle(request);
   }
 }

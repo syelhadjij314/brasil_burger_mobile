@@ -28,11 +28,13 @@ export class AuthService {
   findLogin(user: User){
     return this.http.post(this.urlLogin, user)
   }
-  isLoogedIn(){    
-    return this.storageServ.get('token') != null
+  isLoogedIn(){
+    // let loginToken:string="";    
+    return this.storageServ.get('token')!= null
   }
   isLoogedOut(){    
     this.storageServ.remove('token')
+    this.storageServ.remove('id')
     this.route.navigate(['/securite']);
   }
 

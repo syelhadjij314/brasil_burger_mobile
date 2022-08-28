@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tab1" color="warning">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>livraison</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="header">
+    <img src="../../assets/images/logo.jpg">
+    <ion-img :src="../../assets/images/moto.jpg"></ion-img>
+  </div>
+  <ion-card *ngFor="let livraison of livraisons">    
+    <ion-list *ngFor="let comLiv of livraison.commandes">
+      <ion-item>
+        <ion-label>{{ livraison.livreur.prenom}}</ion-label>
+        <ion-label>{{ livraison.livreur.nom}}</ion-label>
+        <ion-label>{{ livraison.livreur.telephone}}</ion-label>
+      </ion-item>
+      <ion-item>        
+        <ion-label>
+          <h4>{{ comLiv.zone.nom }}</h4>
+          <p>{{ comLiv.zone.prix }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-item class="itemMontant">
+        <ion-label>
+          <h4>Montant Commande</h4>
+          <p style="color:red;font-size: 15px; font-weight: bold;">{{ comLiv.montant}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
