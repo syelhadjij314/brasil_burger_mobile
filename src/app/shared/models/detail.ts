@@ -1,7 +1,6 @@
 import { Produit } from "./produit"
 
-export interface Detail {
-    
+export interface Detail {    
     produit: Produit
     boissons: Produit[]
     frites: Produit[]

@@ -1,0 +1,12 @@
+.panier{
+    display: flex;
+        ion-img{
+            width: 30%;
+            height: auto;
+            max-height: 100%;
+        }
+        ion-item{
+            display: flex;
+            // flex-direction: column;
+        }
+}

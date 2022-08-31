@@ -55,7 +55,6 @@ export class AuthService {
     this.http.post(this.urlLogin, user).subscribe(
       (userConnect:any)=>{
         if (userConnect['token']) {        
-          // console.log(userConnect['id'])
           this.storageServ.set('token',userConnect['token']);          
         }
         this.idUser=userConnect['id']

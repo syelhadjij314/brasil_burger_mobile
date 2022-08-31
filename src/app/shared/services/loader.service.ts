@@ -29,7 +29,7 @@ export class LoaderService {
   // Auto hide show loader
   autoLoader() {
     this.loadingController.create({
-      message: 'Loader hides after 2 seconds',
+      message: 'Verification',
       duration: 2000
     }).then((response) => {
       response.present();

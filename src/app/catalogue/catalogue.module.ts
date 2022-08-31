@@ -6,7 +6,6 @@ import { CataloguePage } from './catalogue.page';
 import { CataloguePageRoutingModule } from './catalogue-routing.module';
 import { CatalogueService } from '../shared/services/catalogue.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -14,7 +13,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     CataloguePageRoutingModule,
-    HttpClientModule,    
+    HttpClientModule, 
   ],
   declarations: [
     CataloguePage

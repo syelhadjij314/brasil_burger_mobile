@@ -23,8 +23,8 @@ export class StorageService {
     this._storage?.set(key, value);
   }
 
-  public get(key: string) {
-    return this._storage?.get(key);
+  async get(key: string) {
+    return await this._storage?.get(key);
   }
   public remove(key: string) {
     this._storage?.remove(key);

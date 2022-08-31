@@ -10,6 +10,7 @@ import { Livraison } from '../models/livraison';
 export class LivraisonService {
   private urlLivraison="http://localhost:8000/api/livraisons";
   // headers:HttpHeaders;
+  codeNumber:string="";
 
   constructor(private http:HttpClient) {
     

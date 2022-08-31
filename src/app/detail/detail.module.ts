@@ -7,6 +7,7 @@ import { DetailPage } from './detail.page';
 import { DetailPageRoutingModule } from './detail-routing.module';
 import { CatalogueService } from '../shared/services/catalogue.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DetailService } from '../shared/services/detail.service';
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   declarations: [DetailPage],
-  providers: [CatalogueService]
+  providers: [
+    CatalogueService,
+    DetailService
+  ]
 })
 export class DetailPageModule {}

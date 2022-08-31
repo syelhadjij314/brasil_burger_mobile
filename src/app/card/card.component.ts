@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Livraison } from '../shared/models/livraison';
+import { LivraisonService } from '../shared/services/livraison.service';
 
 @Component({
   selector: 'app-card',
@@ -6,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  @Input() livraisons!: Livraison[];
 
-  constructor() { }
+  constructor(
+    private modalCtrl : ModalController,
+    private livraisonServ: LivraisonService
+    ) { }
+    
+  ngOnInit(): void {
+    this.livraisonServ.getLivraison().subscribe(livraison =>{
+      this.livraisons=livraison;
+      console.log(livraison);
+      
+    })
+  }
+  async closeModal(){
+    return this.modalCtrl.dismiss();
+  }
+  createQrCode(){
 
-  ngOnInit() {}
-
+  }
+  
 }

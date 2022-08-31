@@ -34,7 +34,7 @@ export class SecuritePage implements OnInit {
         this.storageServ.set('id',res['id'])
         this.storageServ.set('token',res['token']);
         this.tokenDecode = this.commandServ.getDecodedAccessToken(res['token']);
-        this.displayAutoLoader()         
+        this.displayAutoLoader();        
         if (this.tokenDecode.roles[1]=="ROLE_CLIENT") {
           this.route.navigate(['/commande']);       
         }
@@ -49,12 +49,6 @@ export class SecuritePage implements OnInit {
   }
   displayAutoLoader() {
     this.loaderService.autoLoader();
-  }
-  showLoader() {
-    this.loaderService.simpleLoader();
-  }
-  hideLoader() {
-    this.loaderService.dismissLoader();
   }
   customizeLoader() {
     this.loaderService.customLoader();

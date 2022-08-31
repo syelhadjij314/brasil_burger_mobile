@@ -4,23 +4,26 @@
       <ion-back-button defaultHref="/tab1" color="warning"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Tab 2
+      Detail
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
   <div *ngIf="produit!=undefined">
-    <ion-img :src="data:image/png;base64,{{produit.produit.image}}"></ion-img>
-    <ion-title>Nom :{{produit.produit.nom}}</ion-title>
-    <ion-title>Prix:{{produit.produit.prix}} Frs</ion-title>
+    <ion-img :src="data:image/png;base64,{{produit?.produit?.image}}"></ion-img>
+    <ion-title>Nom :{{produit?.produit?.nom}}</ion-title>
+    <ion-title>Prix :{{produit?.produit?.prix}} Frs</ion-title>
     <ion-row>
-      <ion-button size="medium" color="warning">Ajouter Panier</ion-button>
+      <ion-button size="medium" color="warning" (click)="ajouterProduitAuPanier(produit?.produit)">Ajouter Panier</ion-button>
     </ion-row>
   </div>
+  <ion-segment>    
+    <ion-card class="card-img">    
+      <ion-img *ngFor="let boisson of boissons" class="img-boisson" :src="data:image/png;base64,{{boisson.boisson?.image}}"></ion-img>
+    </ion-card>
+  </ion-segment>
+  <ion-card class="card-img">
+    <ion-img class="img-frite" *ngFor="let frite of produit?.produit?.frites" :src="data:image/png;base64,{{ frite.frite?.image }}"></ion-img>
+  </ion-card>
 </ion-content>

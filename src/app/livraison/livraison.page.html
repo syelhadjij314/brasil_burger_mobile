@@ -28,7 +28,10 @@
         </ion-label>
       </ion-item>
       <ion-item class="itemMontant">
-        <ion-label>
+        <ion-label class="contentIcon">
+          <ion-button color="warning" class="iconLiv" (click)="setOpen()">            
+            <ion-icon name="chevron-forward-outline" ></ion-icon>
+          </ion-button>
           <h4>Montant Commande</h4>
           <p style="color:red;font-size: 15px; font-weight: bold;">{{ comLiv.montant}}</p>
         </ion-label>

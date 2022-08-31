@@ -22,8 +22,11 @@
         </ion-menu-toggle>
         <ion-menu-toggle>
           <ion-item routerLink="/panier">
-            <ion-icon name="basket-outline" slot="start" color="warning"></ion-icon>
-            <ion-label>Panier</ion-label>
+            <div class="panier-btn">
+              <ion-icon name="basket-outline" slot="start" color="warning"></ion-icon>
+              <ion-label class="number">{{(object$ | async)?.length}}</ion-label>
+            </div>
+            <ion-label class="panier">Panier</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>

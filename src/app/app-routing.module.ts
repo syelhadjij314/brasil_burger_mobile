@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'panier',
-    loadChildren: () => import('./tab3/tab3.module').then(m => m.Tab3PageModule)
+    loadChildren: () => import('./panier/panier.module').then(m => m.PanierPageModule)
   },
   {
     path: 'securite',

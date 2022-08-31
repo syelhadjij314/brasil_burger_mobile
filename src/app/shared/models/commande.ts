@@ -4,6 +4,7 @@ export interface Commande {
     id?:number;
     isEtat?:string;
     zone:Zone,
+    code?:number;
     client?:{
         id:number,
         nom?:string,

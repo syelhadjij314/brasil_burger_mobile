@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-menu-button menu="first">
+            
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Panier
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let prod of object$|async" class="panier">
+      <ion-img :src="data:image/png;base64,{{prod?.image}}"></ion-img>
+      <ion-item>
+        <h6>{{prod?.nom}}</h6><br>
+        <p>{{prod?.prix}}</p><br>
+        <p>{{prod?.qnt}}</p>   
+      </ion-item>
+  </ion-card>
+</ion-content>

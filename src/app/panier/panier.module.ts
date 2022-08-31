@@ -3,8 +3,8 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab3Page } from './tab3.page';
-import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { PanierPage } from './panier.page';
+import { PanierPageRoutingModule } from './panier-routing.module';
 
 @NgModule({
   imports: [
@@ -12,8 +12,8 @@ import { Tab3PageRoutingModule } from './tab3-routing.module';
     CommonModule,
     FormsModule,
     // RouterModule.forChild([{ path: 'panier', component: Tab3Page }]),
-    Tab3PageRoutingModule,
+    PanierPageRoutingModule,
   ],
-  declarations: [Tab3Page]
+  declarations: [PanierPage]
 })
-export class Tab3PageModule {}
+export class PanierPageModule {}

@@ -10,7 +10,10 @@ import { AppComponent } from './app.component';
 import { FilterPrixPipe } from './shared/pipes/filter-prix.pipe';
 
 @NgModule({
-  declarations: [AppComponent, FilterPrixPipe],
+  declarations: [
+    AppComponent, 
+    FilterPrixPipe,
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(), 
